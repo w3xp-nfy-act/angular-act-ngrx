@@ -1,29 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { NotificationService } from './shared/services';
-import { MatSnackBar } from '@angular/material';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  template: `
+    <div style="text-align:center" class="content">
+      <h1>{{title}}</h1>
+    </div>
+    <app-first></app-first>
+    <app-second></app-second>
+    <app-third></app-third>
+  `,
+  styles: []
 })
-export class AppComponent implements OnInit {
-    examples = [
-        {path: '/examples/01-observable-example', name: 'Observable'},
-        {path: '/examples/02-operators-example', name: 'Operators'}
-    ];
-
-    constructor(private snackbar: MatSnackBar, private ns: NotificationService) {
-    }
-
-    ngOnInit() {
-        this.ns.notifications$
-            .subscribe(notification => this.showNotification(notification));
-    }
-
-    showNotification(notification) {
-        this.snackbar.open(notification, 'OK', {
-            duration: 3000
-        });
-    }
+export class AppComponent {
+  title = 'Example via Redux for central state management';
 }
