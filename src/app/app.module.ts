@@ -10,15 +10,22 @@ import { IncrementComponent, DecrementComponent, ResetComponent } from './totali
 
 const appStore: Store<ICalculateState> = createStore(calculateReducer);
 
+import { AppMarkdownComponent, } from './app-md.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { MarkdownModule } from 'ngx-markdown';
+
 @NgModule({
   declarations: [
     AppComponent,
     IncrementComponent,
     DecrementComponent,
-    ResetComponent
+    ResetComponent,
+    AppMarkdownComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    MarkdownModule.forRoot({ loader: HttpClient }),
   ],
   providers: [
     { provide: 'AppStore', useValue: appStore },

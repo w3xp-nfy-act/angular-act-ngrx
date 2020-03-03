@@ -1,17 +1,25 @@
 import { Component } from '@angular/core';
+import { LoadingService } from './service/loading.service';
 
 @Component({
   selector: 'app-root',
   template: `
-    <div style="text-align:center" class="content">
-      <h1>{{title}}</h1>
-    </div>
-    <app-first></app-first>
-    <app-second></app-second>
-    <app-third></app-third>
+  <ng-template [ngIf]="loadingService.isLoading() | async">
+  <h1>{{title}}</h1>
+  <h2>{{subtitle}}</h2>
+  <app-first></app-first>
+  <app-second></app-second>
+  <app-third></app-third>
+</ng-template>
+
+    <p><br></p>
+    <app-ngrx-ov-md></app-ngrx-ov-md>
   `,
   styles: []
 })
 export class AppComponent {
-  title = 'Example via Redux for central state management';
+  title = 'State management with reducer pattern via Redux.';
+  subtitle = 'Example:';
+
+  constructor(public loadingService: LoadingService) { }
 }
